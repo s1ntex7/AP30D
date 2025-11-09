@@ -1,0 +1,50 @@
+ LOGI DO WYSŁANIA:
+
+  Logi są w terminalu z ostatniego uruchomienia. Oto fragment który pokazuje wszystkie 4 problemy:
+
+  Fragment logów z pierwszego testu F10 (Monitor 0) - 11:32:59 do 11:33:01:
+
+  [2025-11-09T11:32:59.486854Z]  INFO aplikacja_3_0: 🎹 F10 (Active Monitor) GlobalHotKeyEvent { id: 169, state: Pressed }
+  [2025-11-09T11:32:59.493134Z]  INFO aplikacja_3_0::screenshot_new: ✅ Cursor at (996, 467) is on Monitor 0
+  [2025-11-09T11:32:59.493178Z]  INFO aplikacja_3_0::screenshot_new: 🚀 Launching overlay for active Monitor 0...
+  [2025-11-09T11:32:59.493197Z]  INFO aplikacja_3_0::screenshot_new: 📍 Overlay path: C:\PennyLane\Aplikacja
+  3.0\src-tauri\target\debug\overlay_egui.exe
+  [2025-11-09T11:32:59.493405Z]  INFO aplikacja_3_0::screenshot_new: ✅ Cursor at (996, 467) is on Monitor 0
+  [2025-11-09T11:32:59.493423Z]  INFO aplikacja_3_0::screenshot_new: 🚀 Launching overlay for active Monitor 0...  ← DUPLICATE!
+  [2025-11-09T11:32:59.493431Z]  INFO aplikacja_3_0::screenshot_new: 📍 Overlay path: C:\PennyLane\Aplikacja
+  3.0\src-tauri\target\debug\overlay_egui.exe
+
+  [2025-11-09T11:32:59.511687Z]  INFO overlay_egui: Parent process: starting multi-monitor screenshot overlay
+  [2025-11-09T11:32:59.511774Z]  INFO overlay_egui: Parent process: starting multi-monitor screenshot overlay  ← 2 PARENTS!
+  [2025-11-09T11:32:59.511784Z]  INFO overlay_egui: Found 2 monitor(s) - RAW ORDER FROM Monitor::all():
+  [2025-11-09T11:32:59.511854Z]  INFO overlay_egui: Found 2 monitor(s) - RAW ORDER FROM Monitor::all():
+  [2025-11-09T11:32:59.512462Z]  INFO overlay_egui:   RAW[0]: pos=(0, 0), size=2560×1440, scale=1.50
+  [2025-11-09T11:32:59.512471Z]  INFO overlay_egui:   RAW[0]: pos=(0, 0), size=2560×1440, scale=1.50
+  [2025-11-09T11:32:59.512900Z]  INFO overlay_egui:   RAW[1]: pos=(2560, 0), size=1920×1080, scale=1.50
+
+  [2025-11-09T11:32:59.514853Z]  INFO overlay_egui: Monitor 0 metadata: logical 2560×1440 @ (0, 0), scale 1.50
+
+  [2025-11-09T11:32:59.611402Z]  INFO overlay_egui: Monitor 0: RAW capture 2560×1440 (expected 3839×2159 based on DPI)
+  [2025-11-09T11:32:59.611422Z]  WARN overlay_egui: Monitor 0: DIMENSION MISMATCH! Captured 2560×1440 but expected 3839×2159
+                                  ↑ BRAK LOGÓW O CROPPINGU! Cropping się nie uruchomił!
+
+  [2025-11-09T11:32:59.790588Z]  INFO overlay_egui: Saved RAW screenshot to:
+  C:\Users\aleks\AppData\Local\Temp\egui_overlay\monitor_0_RAW_PHYSICAL.png
+  [2025-11-09T11:32:59.964502Z]  INFO overlay_egui: Monitor 0: Saved screenshot (2560×1440) to
+  C:\Users\aleks\AppData\Local\Temp\egui_overlay\monitor_0.png
+
+  [2025-11-09T11:33:00.197131Z]  INFO overlay_egui: Launching child process for monitor 0
+  [2025-11-09T11:33:00.201000Z]  INFO overlay_egui: Launching child process for monitor 1  ← SPAWNA OBA zamiast tylko 0!
+  [2025-11-09T11:33:00.205305Z]  INFO overlay_egui: Launched 2 child process(es)
+
+  [2025-11-09T11:33:00.209447Z]  INFO overlay_egui: Child process starting for monitor 0 at (0, 0) size 2560×1440
+  [2025-11-09T11:33:00.214991Z]  INFO overlay_egui: Child process starting for monitor 1 at (2560, 0) size 1920×1080
+
+  [2025-11-09T11:33:00.727066Z]  WARN overlay_egui: Monitor 0: Texture size 2560×1440 exceeds GPU limit (2048). Downscaling to
+  2048×1152
+  [2025-11-09T11:33:01.263578Z]  INFO overlay_egui: Monitor 0: Scaling texture to fit GPU limit: 2560×1440 → 2048×1152 (scale:
+  0.80)
+  [2025-11-09T11:33:01.276361Z]  INFO overlay_egui: Child process: overlay window created for monitor 0 at (0, 0) size 2560×1440
+                                                                                                      ↑ WINDOW SIZE = 2560×1440
+                                                                                                        ale TEXTURE = 2048×1152
+                                                                                                        → ZOOM EFFECT!
